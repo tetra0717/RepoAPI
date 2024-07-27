@@ -1,0 +1,54 @@
+volumes:
+  db-store:
+  pma-session-store:
+  app-logs:
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    ports:
+      - target: 8080
+        published: 8080
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: bind
+        source: .
+        target: /app
+      - type: volume
+        source: app-logs
+        target: /logs
+    tty: true
+    container_name: Go
+    command: go run cmd/main.go
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    build:
+      context: .
+      dockerfile: ./docker/db/Dockerfile
+    ports:
+      - target: 3306
+        published: 3306
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: volume
+        source: db-store
+        target: /var/lib/mysql
+        volume:
+          nocopy: true
+    container_name: DB
+    environment:
+      - MYSQL_DATABASE=api
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=root
+    healthcheck:
+     test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+     timeout: 20s
+     retries: 10
