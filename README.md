@@ -138,14 +138,6 @@ curl -X GET "localhost:8080/report?author_id=ymd333&style=definite&language=en"
 curl -X PUT localhost:8080/report -d '{"id":"858e6581-7b63-f39a-10c8-be32ad6aafb5","count":400, "title":"クリーンアーキテクチャについて", "style":"definite", "language":"jp"}' -H "Content-Type: application/json"
 ```
 
-## テスト
-
-repoapiは、単体テストと統合テストの両方を含んでいます。テストを実行するには、プロジェクトのルートディレクトリで次のコマンドを実行します。
-
-```bash
-go test ./...
-```
-
 ## ディレクトリ構造
 
 ```
@@ -155,26 +147,24 @@ repoapi/
 ├── src/
 │   ├── application/                             # アプリケーション層
 │   │   ├── report.go                            # レポートに関するアプリケーションロジック
-│   │   ├── report_test.go                       # レポートに関するアプリケーションロジックのテスト
-│   │   ├── user.go                             # ユーザーに関するアプリケーションロジック
-│   │   └── user_test.go                        # ユーザーに関するアプリケーションロジックのテスト
+│   │   └── user.go                              # ユーザーに関するアプリケーションロジック
 │   ├── domain/                                  # ドメイン層
-│   │   ├── model/                              # データモデル
-│   │   │   ├── report.go                       # レポートのデータモデル
+│   │   ├── model/                               # データモデル
+│   │   │   ├── report.go                        # レポートのデータモデル
 │   │   │   └── user.go                          # ユーザーのデータモデル
-│   │   └── repository/                         # リポジトリのインターフェース
-│   │       ├── report.go                       # レポートリポジトリのインターフェース
+│   │   └── repository/                          # リポジトリのインターフェース
+│   │       ├── report.go                        # レポートリポジトリのインターフェース
 │   │       └── user.go                          # ユーザーリポジトリのインターフェース
 │   ├── infra/                                   # インフラストラクチャ層
 │   │
-│   │   ├── database.go                         # データベース接続
-│   │   └── persistence/                        # データベースとのやり取り
-│   │       ├── report.go                       # レポートに関するデータベース操作
+│   │   ├── database.go                          # データベース接続
+│   │   └── persistence/                         # データベースとのやり取り
+│   │       ├── report.go                        # レポートに関するデータベース操作
 │   │       └── user.go                          # ユーザーに関するデータベース操作
 │   └── presentation/                            # プレゼンテーション層
-│       └── rest/                               # REST API
-│           ├── report.go                       # レポートに関するREST APIハンドラ
-│           └── user.go                         # ユーザーに関するREST APIハンドラ
+│       └── rest/                                # REST API
+│           ├── report.go                        # レポートに関するREST APIハンドラ
+│           └── user.go                          # ユーザーに関するREST APIハンドラ
 ├── go.mod                                       # Goモジュール定義ファイル
 ├── go.sum                                       # Goモジュールチェックサムファイル
 └── docker-compose.yml                           # Docker Compose構成ファイル
