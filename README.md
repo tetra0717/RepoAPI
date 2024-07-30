@@ -6,7 +6,6 @@ repoapiはレポートとユーザーを管理するためのシンプルなREST
 
 - [インストールと実行](#インストールと実行)
 - [APIの使用](#APIの使用)
-- [テスト](#テスト)
 - [ディレクトリ構造](#ディレクトリ構造)
 
 ## インストールと実行
@@ -51,6 +50,8 @@ repoapiは、HTTPリクエストを使用して操作します。APIエンドポ
 ```bash
 curl -X POST localhost:8080/user -d '{"id":"ymd333", "name":"山田 太郎"}' -H "Content-Type: application/json"
 ```
+![image](https://github.com/user-attachments/assets/dac3aa04-75a5-477a-bd6b-b59e7e7aada6)
+
 
 #### ユーザーの取得
 
@@ -62,6 +63,9 @@ curl -X POST localhost:8080/user -d '{"id":"ymd333", "name":"山田 太郎"}' -H
 ```bash
 curl -X GET "localhost:8080/user?id=ymd333"
 ```
+![image](https://github.com/user-attachments/assets/f24d2c03-8e7a-4536-bdef-c84a6c259228)
+
+
 
 #### ユーザー情報の更新
 
@@ -74,6 +78,8 @@ curl -X GET "localhost:8080/user?id=ymd333"
 ```bash
 curl -X PUT "localhost:8080/user" -d '{"id":"ymd333","name":"山田 花子"}' -H "Content-Type: application/json"
 ```
+![image](https://github.com/user-attachments/assets/92c40d5f-5e4a-44e6-9381-4f3f59c007ee)
+
 
 ### レポートエンドポイント
 
@@ -88,6 +94,8 @@ curl -X PUT "localhost:8080/user" -d '{"id":"ymd333","name":"山田 花子"}' -H
 ```bash
 curl -X POST localhost:8080/report -d '{"author_id":"ymd333", "count":300, "title":"レイヤードアーキテクチャについて", "style":"polite", "language":"jp"}' -H "Content-Type: application/json"
 ```
+![image](https://github.com/user-attachments/assets/5f6ebabe-b113-4f2f-a4bf-fb96bf4631bb)
+
 
 #### レポートの削除
 
@@ -97,8 +105,10 @@ curl -X POST localhost:8080/report -d '{"author_id":"ymd333", "count":300, "titl
 リクエストの例:
 
 ```bash
-curl -X DELETE "localhost:8080/report?id=858e6581-7b63-f39a-10c8-be32ad6aafb5"
+curl -X DELETE "localhost:8080/report?id=30b61e17-eca3-4312-b141-878de36a70d1"
 ```
+![image](https://github.com/user-attachments/assets/ddc16ad2-78b9-4956-b154-8c679dfd52e8)
+
 
 #### レポートの取得
 
@@ -110,7 +120,7 @@ curl -X DELETE "localhost:8080/report?id=858e6581-7b63-f39a-10c8-be32ad6aafb5"
 - IDでレポートを取得:
 
 ```bash
-curl -X GET "localhost:8080/report?id=858e6581-7b63-f39a-10c8-be32ad6aafb5"
+curl -X GET "localhost:8080/report?id=30b61e17-eca3-4312-b141-878de36a70d1"
 ```
 
 - 作成者IDでレポートを取得:
@@ -118,13 +128,16 @@ curl -X GET "localhost:8080/report?id=858e6581-7b63-f39a-10c8-be32ad6aafb5"
 ```bash
 curl -X GET "localhost:8080/report?author_id=ymd333"
 ```
+![image](https://github.com/user-attachments/assets/f48acd37-cafd-448d-8179-37869606a607)
+
 
 - 複数のクエリパラメータを指定してレポートを取得:
 
 ```bash
 curl -X GET "localhost:8080/report?author_id=ymd333&title=レイヤードアーキテクチャについて"
-curl -X GET "localhost:8080/report?author_id=ymd333&style=definite&language=en"
 ```
+![image](https://github.com/user-attachments/assets/76b0ca38-8ea1-463e-ac63-d0fcf37c6eda)
+
 
 #### レポート情報の更新
 
@@ -135,8 +148,9 @@ curl -X GET "localhost:8080/report?author_id=ymd333&style=definite&language=en"
 リクエストの例:
 
 ```bash
-curl -X PUT localhost:8080/report -d '{"id":"858e6581-7b63-f39a-10c8-be32ad6aafb5","count":400, "title":"クリーンアーキテクチャについて", "style":"definite", "language":"jp"}' -H "Content-Type: application/json"
+curl -X PUT localhost:8080/report -d '{"id":"30b61e17-eca3-4312-b141-878de36a70d1","count":400, "title":"クリーンアーキテクチャについて", "style":"definite", "language":"jp"}' -H "Content-Type: application/json"
 ```
+![image](https://github.com/user-attachments/assets/6f3df378-2203-4bdc-8011-d4043a565a8c)
 
 ## ディレクトリ構造
 
@@ -156,7 +170,6 @@ repoapi/
 │   │       ├── report.go                        # レポートリポジトリのインターフェース
 │   │       └── user.go                          # ユーザーリポジトリのインターフェース
 │   ├── infra/                                   # インフラストラクチャ層
-│   │
 │   │   ├── database.go                          # データベース接続
 │   │   └── persistence/                         # データベースとのやり取り
 │   │       ├── report.go                        # レポートに関するデータベース操作
