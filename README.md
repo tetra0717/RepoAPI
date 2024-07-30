@@ -86,7 +86,7 @@ curl -X PUT "localhost:8080/user" -d '{"id":"ymd333","name":"山田 花子"}' -H
 リクエストの例:
 
 ```bash
-curl -X POST localhost:8080/report -d '{"author_id":"ymd333", "count":300, "title":"レイヤードアーキテクチャ+DDDについて", "style":"polite", "language":"jp"}' -H "Content-Type: application/json"
+curl -X POST localhost:8080/report -d '{"author_id":"ymd333", "count":300, "title":"レイヤードアーキテクチャについて", "style":"polite", "language":"jp"}' -H "Content-Type: application/json"
 ```
 
 #### レポートの削除
@@ -122,8 +122,8 @@ curl -X GET "localhost:8080/report?author_id=ymd333"
 - 複数のクエリパラメータを指定してレポートを取得:
 
 ```bash
-curl -X GET "localhost:8080/report?author_id=ymd333&title=レイヤードアーキテクチャ+DDDについて"
-curl -X GET "localhost:8080/report?author_id=ymd333&style="definite"&language="en"
+curl -X GET "localhost:8080/report?author_id=ymd333&title=レイヤードアーキテクチャについて"
+curl -X GET "localhost:8080/report?author_id=ymd333&style=definite&language=en"
 ```
 
 #### レポート情報の更新
@@ -135,7 +135,7 @@ curl -X GET "localhost:8080/report?author_id=ymd333&style="definite"&language="e
 リクエストの例:
 
 ```bash
-curl -X PUT "localhost:8080/report" -d '{"id":"858e6581-7b63-f39a-10c8-be32ad6aafb5","count":400, "title":"クリーンアーキテクチャについて", "style":"definite", "language":"jp"}' -H "Content-Type: application/json"
+curl -X PUT localhost:8080/report -d '{"id":"858e6581-7b63-f39a-10c8-be32ad6aafb5","count":400, "title":"クリーンアーキテクチャについて", "style":"definite", "language":"jp"}' -H "Content-Type: application/json"
 ```
 
 ## テスト
